@@ -18,7 +18,7 @@ RUN chmod +x /bin/wp-cli.phar /bin/wp
 RUN sed -i -e "/DB_COLLATE/a define( 'WP_HOME', 'http://local.outpost.rocks/' );\ndefine( 'WP_SITEURL', 'http://local.outpost.rocks/' );" /usr/src/wordpress/wp-config-sample.php
 
 # Enable debugging
-RUN sed -i -e "s/WP_DEBUG', false/WP_DEBUG', true/" -e "/WP_DEBUG/a define('WP_DEBUG_LOG', true);" /usr/src/wordpress/wp-config-sample.php
+RUN sed -i -e "s/WP_DEBUG', false/WP_DEBUG', true/" -e "/WP_DEBUG/a define('WP_DEBUG_LOG', true);\ndefine( 'SAVEQUERIES', true );\ndefine( 'JETPACK_DEV_DEBUG', true);" /usr/src/wordpress/wp-config-sample.php
 
 # Cleanup
 RUN apt-get clean
