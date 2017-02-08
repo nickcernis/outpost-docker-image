@@ -14,7 +14,7 @@ RUN curl -o /bin/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-
 COPY wp-su.sh /bin/wp
 RUN chmod +x /bin/wp-cli.phar /bin/wp
 
-# Modify wp-config with default URL
+# Modify wp-config with default URL: local.outpost.rocks
 RUN sed -i -e "/DB_COLLATE/a define( 'WP_HOME', 'http://local.outpost.rocks/' );\ndefine( 'WP_SITEURL', 'http://local.outpost.rocks/' );" /usr/src/wordpress/wp-config-sample.php
 
 # Enable debugging
