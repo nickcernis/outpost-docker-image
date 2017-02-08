@@ -23,3 +23,9 @@ RUN sed -i -e "s/WP_DEBUG', false/WP_DEBUG', true/" -e "/WP_DEBUG/a define('WP_D
 # Cleanup
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+COPY outpost-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/outpost-entrypoint.sh
+
+ENTRYPOINT ["outpost-entrypoint.sh"]
+CMD ["apache2-foreground"]
