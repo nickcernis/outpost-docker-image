@@ -12,7 +12,7 @@ source /usr/local/bin/docker-entrypoint.sh
 if ! $(wp core is-installed); then
     wp core install --url=http://local.outpost.rocks --title=Outpost --admin_user=outpost --admin_password=outpost --admin_email=changeme@example.com
     wp rewrite structure "/%postname%/"
-    wp plugin delete hello-dolly
+    wp plugin delete hello
 fi
 
 # execute CMD
