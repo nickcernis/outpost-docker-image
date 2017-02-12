@@ -20,6 +20,10 @@ RUN sed -i -e "/DB_COLLATE/a define( 'WP_HOME', 'http://local.outpost.rocks/' );
 # Enable debugging
 RUN sed -i -e "s/WP_DEBUG', false/WP_DEBUG', true/" -e "/WP_DEBUG/a define('WP_DEBUG_LOG', true);\ndefine( 'SAVEQUERIES', true );\ndefine( 'JETPACK_DEV_DEBUG', true);" /usr/src/wordpress/wp-config-sample.php
 
+# Increase memory and upload limits
+RUN printf "upload_max_filesize = 64M\npost_max_size = 64M" > /usr/local/etc/php/conf.d/uploads.ini
+RUN printf "memory_limit = 256M" > /usr/local/etc/php/conf.d/memory.ini
+
 # Add an info.php to the WordPress root directory
 COPY info.php /usr/src/wordpress/
 
